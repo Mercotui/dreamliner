@@ -1,0 +1,21 @@
+name: Build and publish Site
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@master
+    - name: Build Website
+      run: npm run build
+    - name: Push build to release branch
+      uses: seanmiddleditch/gha-publish-to-git@master
+      with:
+        branch: release
+        github_token: '${{ secrets.GITHUB_TOKEN  }}'
+        source_folder: dist
