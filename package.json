@@ -19,7 +19,8 @@
   "homepage": "https://github.com/Mercotui/dreamliner#readme",
   "dependencies": {
     "lodash": "^4.17.21",
-    "phaser": "^3.55.2"
+    "phaser": "^3.55.2",
+    "screenfull": "^5.1.0"
   },
   "devDependencies": {
     "css-loader": "^6.2.0",
