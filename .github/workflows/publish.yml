@@ -3,19 +3,41 @@ name: Build and publish Site
 on:
   push:
     branches:
-      - master
+      - main
+
 jobs:
   publish:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repo
-      uses: actions/checkout@master
-    - name: Build Website
-      run: npm run build
-    - name: Push build to release branch
-      uses: seanmiddleditch/gha-publish-to-git@master
-      with:
-        branch: release
-        github_token: '${{ secrets.GITHUB_TOKEN  }}'
-        source_folder: dist
+      - name: Checkout Repo
+        uses: actions/checkout@master
+        with:
+          lfs: true
+      - name: Checkout LFS objects
+        run: git lfs checkout
+
+        # Setup npm and cache
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-
+      - name: Install dependencies
+        run: npm install
+
+        # Build and publish steps
+      - name: Build Website
+        run: npm run build
+      - name: Deploy
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: release
+          FOLDER: dist
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
