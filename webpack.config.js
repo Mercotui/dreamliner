@@ -5,6 +5,12 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 module.exports = {
   entry: './src/index.js',
 
+  resolve: {
+    roots: [
+      path.resolve('./src'),
+    ],
+  },
+
   plugins: [
     new HtmlWebpackPlugin({
       title: 'DREAMLINER-YTR',

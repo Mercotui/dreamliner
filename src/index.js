@@ -1,55 +1,26 @@
 import 'phaser';
 import 'screenfull';
 
-import './style.css';
-import sky_image from './sky.jpg';
-import train_image from './train/train.png';
-import magpie_image from './player/magpie.png';
-import Train from './train/train'
-import Player from './player/player'
-
-class PlayGame extends Phaser.Scene {
-    constructor() {
-        super("PlayGame");
-    }
-
-    preload() {
-        this.load.image('sky', sky_image);
-        this.load.image('magpie', magpie_image);
-        this.load.image('train', train_image);
-    }
-
-    create() {
-        this.sky = this.add.image(400, 300, 'sky');
-
-        var rails = new Phaser.Curves.Path(50, 100).splineTo([ 164, 46, 274, 142, 412, 57, 522, 141, 664, 64 ]);
-
-        this.player = new Player(this);
-        this.children.add(this.player);
-        this.train = new Train(rails, this);
-        this.children.add(this.train);
-        this.train.isControlsActive = true;
-    }
-
-    update() {
-        if (this.player.isControlsActive){
-          this.player.updateMovement();
-        } else if (this.train.isControlsActive) {
-          this.train.updateMovement();
-        }
-    }
-}
+import '/style.css';
+import IntroScene from '/scenes/intro/intro'
+import SpiritedScene from '/scenes/spirited/spirited'
+import AlarmScene from '/scenes/alarm/alarm'
 
 let config = {
-    width: 800,
-    height: 600,
+    width: 1920,
+    height: 1080,
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    },
+    antialias: true,
     physics: {
         default: 'arcade',
         arcade: {
             debug: false
         }
     },
-    scene: PlayGame
+    scene: [IntroScene, SpiritedScene, AlarmScene]
 };
 
 new Phaser.Game(config);
