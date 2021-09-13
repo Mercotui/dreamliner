@@ -13,7 +13,7 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'DREAMLINER-YTR',
+      title: 'DREAMLINER',
       meta: {viewport: 'width=device-width, initial-scale=1'}
     }),
     new FaviconsWebpackPlugin('src/logo.png'),

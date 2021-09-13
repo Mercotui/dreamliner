@@ -21,13 +21,14 @@ export default class AlarmScene extends Phaser.Scene {
 
         var rails = new Phaser.Curves.Path(0, 700).splineTo([ 960, 700, 1920, 700 ]);
 
-        this.train = new Train(rails, data.train_speed, this);
+        this.train = new Train('u2_train', rails, data.train_speed, this);
         this.children.add(this.train);
+        this.train.setScale(0.5);
         this.train.isControlsActive = true;
 
-        var graphics = this.add.graphics();
-        graphics.lineStyle(1, 0x00ff00, 1);
-        rails.draw(graphics);
+        // var graphics = this.add.graphics();
+        // graphics.lineStyle(1, 0x00ff00, 1);
+        // rails.draw(graphics);
     }
 
     update() {

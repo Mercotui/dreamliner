@@ -2,7 +2,7 @@ import 'phaser';
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene) {
-        super(scene, 200, 300, 'magpie');
+        super(scene, 185, 272, 'magpie');
         this.scene = scene;
         this.isControlsActive = false;
 

@@ -2,10 +2,11 @@ import 'phaser';
 
 import Train from '/train/train'
 import Player from '/player/player'
-import train_image from '/train/train.png';
+import czech_train_image from '/train/train.png';
+import u2_train_image from '/train/u2.jpg';
 import magpie_image from '/player/magpie.png';
 
-import sky_image from './sky.jpg';
+import intro_image from './intro.jpg';
 
 export default class IntroScene extends Phaser.Scene {
     constructor() {
@@ -15,20 +16,23 @@ export default class IntroScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('sky', sky_image);
+        this.load.image('intro', intro_image);
         this.load.image('magpie', magpie_image);
-        this.load.image('train', train_image);
+        this.load.image('train', czech_train_image);
+        this.load.image('u2_train', u2_train_image);
     }
 
     create() {
-        this.sky = this.add.image(400, 300, 'sky');
+        this.sky = this.add.image(960, 540, 'intro');
 
-        var rails = new Phaser.Curves.Path(50, 100).splineTo([ 164, 46, 274, 142, 412, 57, 522, 141, 664, 64 ]);
+        var rails = new Phaser.Curves.Path(-500, 820).splineTo([ 1920, 820]);
 
         this.player = new Player(this);
         this.children.add(this.player);
-        this.train = new Train(rails, 0, this);
+        this.train = new Train('u2_train', rails, 0, this);
         this.children.add(this.train);
+        this.train.setScale(0.5);
+        this.train.traveled_distance = 600;
         this.train.isControlsActive = true;
 
         // var graphics = this.add.graphics();

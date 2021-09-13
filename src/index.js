@@ -4,6 +4,7 @@ import 'screenfull';
 import '/style.css';
 import IntroScene from '/scenes/intro/intro'
 import SpiritedScene from '/scenes/spirited/spirited'
+import OberbaumScene from '/scenes/oberbaum/oberbaum'
 import AlarmScene from '/scenes/alarm/alarm'
 
 let config = {
@@ -20,7 +21,7 @@ let config = {
             debug: false
         }
     },
-    scene: [IntroScene, SpiritedScene, AlarmScene]
+    scene: [IntroScene, SpiritedScene, OberbaumScene, AlarmScene]
 };
 
 new Phaser.Game(config);
