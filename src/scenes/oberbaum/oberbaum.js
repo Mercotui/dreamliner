@@ -30,16 +30,16 @@ export default class OberbaumScene extends Phaser.Scene {
 
         this.foreground = this.add.image(960, 540, 'oberbaum_foreground');
 
-        var graphics = this.add.graphics();
-        graphics.lineStyle(1, 0x00ff00, 1);
-        rails.draw(graphics);
+        // var graphics = this.add.graphics();
+        // graphics.lineStyle(1, 0x00ff00, 1);
+        // rails.draw(graphics);
     }
 
     update() {
         this.train.updateMovement();
 
         if (this.train.is_at_end) {
-          this.scene.start('AlarmScene', {train_speed: this.train.speed});
+          this.scene.start('SpaceScene', {train_speed: this.train.speed});
         }
     }
 }

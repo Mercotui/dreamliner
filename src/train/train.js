@@ -4,7 +4,7 @@ var _ = require('lodash');
 export default class Train extends Phaser.GameObjects.Sprite {
     ACCELERATION = 0.80;
     DECELERATION = 2.5;
-    SPEED_MAX = 100;
+    SPEED_MAX = 50;
 
     constructor(texture, rails, initial_speed, scene) {
         super(scene, 100, 200, texture);
